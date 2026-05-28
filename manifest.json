@@ -1,13 +1,14 @@
 {
-  "name": "VK Connect",
+  "name": "VK",
   "short_name": "VK",
-  "start_url": "/mini_browser/",
+  "start_url": "./",
   "display": "standalone",
   "background_color": "#ffffff",
-  "theme_color": "#000000",
+  "theme_color": "#4f46e5",
+  "description": "VK Mini Browser App",
   "icons": [
     {
-      "src": "icon.png",
+      "src": "icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
