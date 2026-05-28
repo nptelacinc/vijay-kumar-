@@ -184,6 +184,7 @@ height:22px;
 border-radius:50%;
 font-size:14px;
 cursor:pointer;
+display:none;
 }
 
 /* IMAGE VIEWER */
@@ -252,11 +253,7 @@ color:white;
 cursor:pointer;
 }
 
-.buttons button:hover{
-background:#00184d;
-}
-
-/* SOCIAL MEDIA */
+/* SOCIAL */
 
 .social-box{
 background:#f1f1f1;
@@ -289,7 +286,7 @@ width:35px;
 height:35px;
 }
 
-/* GOOGLE TAB */
+/* GOOGLE */
 
 .search-box{
 display:flex;
@@ -324,11 +321,63 @@ border-radius:20px;
 background:white;
 }
 
+/* WHATSAPP */
+
+textarea{
+width:100%;
+height:150px;
+padding:15px;
+border:none;
+border-radius:15px;
+font-size:18px;
+background:#f1f1f1;
+resize:none;
+margin-bottom:20px;
+}
+
+.wa-btn{
+width:100%;
+padding:16px;
+border:none;
+border-radius:15px;
+background:#25D366;
+color:white;
+font-size:22px;
+font-weight:bold;
+cursor:pointer;
+display:flex;
+justify-content:center;
+align-items:center;
+gap:12px;
+}
+
+.wa-btn img{
+width:35px;
+height:35px;
+}
+
+/* ADMIN BUTTON */
+
+.admin-btn{
+position:fixed;
+bottom:20px;
+right:20px;
+background:#ff9800;
+color:white;
+border:none;
+padding:14px 18px;
+border-radius:50px;
+font-size:18px;
+cursor:pointer;
+z-index:9999;
+box-shadow:0 5px 15px rgba(0,0,0,0.3);
+}
+
 </style>
 
 </head>
 
-<body>
+<body onload="disableEditing()">
 
 <!-- HEADER -->
 
@@ -365,37 +414,23 @@ Electrical Engineering Student
 
 <nav>
 
-<button onclick="showTab('home')">
-Home
-</button>
+<button onclick="showTab('home')">Home</button>
 
-<button onclick="showTab('biodata')">
-Biodata
-</button>
+<button onclick="showTab('biodata')">Biodata</button>
 
-<button onclick="showTab('gallery')">
-Gallery
-</button>
+<button onclick="showTab('gallery')">Gallery</button>
 
-<button onclick="showTab('calculator')">
-Calculator
-</button>
+<button onclick="showTab('calculator')">Calculator</button>
 
-<button onclick="showTab('social')">
-Social
-</button>
+<button onclick="showTab('social')">Social</button>
 
-<button onclick="showTab('facebook')">
-Facebook
-</button>
+<button onclick="showTab('facebook')">Facebook</button>
 
-<button onclick="showTab('google')">
-Google
-</button>
+<button onclick="showTab('google')">Google</button>
 
-<button onclick="showTab('about')">
-About
-</button>
+<button onclick="showTab('message')">Message</button>
+
+<button onclick="showTab('about')">About</button>
 
 </nav>
 
@@ -411,7 +446,7 @@ About
 
 Welcome to my personal app website.
 
-Everything is editable.
+Only admin can edit this website.
 
 </p>
 
@@ -487,7 +522,7 @@ id="galleryBox"></div>
 
 </div>
 
-<!-- FULL IMAGE VIEW -->
+<!-- IMAGE VIEW -->
 
 <div id="viewer">
 
@@ -550,38 +585,20 @@ id="galleryBox"></div>
 <h2>Social Media</h2>
 
 <div class="social-box">
-<a href="https://instagram.com"
-target="_blank">
-
-<img src="
-https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png">
-
-Instagram
-
+<a href="https://instagram.com" target="_blank">
+📸 Instagram
 </a>
 </div>
 
 <div class="social-box">
-<a href="https://linkedin.com"
-target="_blank">
-
-<img src="
-https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png">
-
-LinkedIn
-
+<a href="https://linkedin.com" target="_blank">
+💼 LinkedIn
 </a>
 </div>
 
 <div class="social-box">
-<a href="https://github.com"
-target="_blank">
-
-<img src="
-https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png">
-
-GitHub
-
+<a href="https://github.com" target="_blank">
+💻 GitHub
 </a>
 </div>
 
@@ -602,8 +619,7 @@ GitHub
 <a href="https://facebook.com"
 target="_blank">
 
-<img src="
-https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg">
 
 Facebook Open
 
@@ -644,6 +660,38 @@ src="https://www.google.com/search?igu=1">
 
 </div>
 
+<!-- MESSAGE -->
+
+<div id="message" class="tab">
+
+<div class="card">
+
+<h2>WhatsApp Chat</h2>
+
+<p style="margin-bottom:20px;font-size:18px;">
+
+Send message directly to my WhatsApp.
+
+</p>
+
+<textarea
+id="waMessage"
+placeholder="Type your message..."></textarea>
+
+<button
+class="wa-btn"
+onclick="sendWhatsApp()">
+
+<img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
+
+Chat on WhatsApp
+
+</button>
+
+</div>
+
+</div>
+
 <!-- ABOUT -->
 
 <div id="about" class="tab">
@@ -663,6 +711,15 @@ This is my advanced personal portfolio app website.
 </div>
 
 </div>
+
+<!-- ADMIN BUTTON -->
+
+<button class="admin-btn"
+onclick="adminLogin()">
+
+Admin Edit
+
+</button>
 
 <script>
 
@@ -788,7 +845,7 @@ document.getElementById('display')
 
 }
 
-/* GOOGLE SEARCH */
+/* GOOGLE */
 
 function searchGoogle(){
 
@@ -804,6 +861,99 @@ document.getElementById('browserFrame')
 + encodeURIComponent(query);
 
 }
+
+}
+
+/* WHATSAPP */
+
+function sendWhatsApp(){
+
+let text=
+document.getElementById('waMessage')
+.value;
+
+let number="919334243998";
+
+let url=
+"https://wa.me/"
++ number
++ "?text="
++ encodeURIComponent(text);
+
+window.open(url,'_blank');
+
+}
+
+/* ADMIN LOCK */
+
+function disableEditing(){
+
+document.querySelectorAll('[contenteditable]')
+.forEach(item=>{
+
+item.setAttribute(
+'contenteditable',
+'false'
+);
+
+});
+
+document.querySelectorAll(
+'input[type=file]'
+).forEach(item=>{
+
+item.disabled=true;
+
+});
+
+}
+
+function adminLogin(){
+
+let password=
+prompt('Enter Admin Password');
+
+if(password==="vijay123"){
+
+enableEditing();
+
+alert('Admin Edit Mode Enabled');
+
+}else{
+
+alert('Wrong Password');
+
+}
+
+}
+
+function enableEditing(){
+
+document.querySelectorAll('[contenteditable]')
+.forEach(item=>{
+
+item.setAttribute(
+'contenteditable',
+'true'
+);
+
+});
+
+document.querySelectorAll(
+'input[type=file]'
+).forEach(item=>{
+
+item.disabled=false;
+
+});
+
+document.querySelectorAll(
+'.delete-btn'
+).forEach(item=>{
+
+item.style.display='block';
+
+});
 
 }
 
