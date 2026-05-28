@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -291,11 +290,6 @@ gap:12px;
 color:white;
 }
 
-.social-box img{
-width:35px;
-height:35px;
-}
-
 /* GOOGLE */
 
 .search-box{
@@ -361,10 +355,6 @@ align-items:center;
 gap:12px;
 }
 
-.wa-btn img{
-width:35px;
-}
-
 /* ADMIN BUTTON */
 
 .admin-btn{
@@ -379,7 +369,6 @@ border-radius:40px;
 font-size:18px;
 cursor:pointer;
 z-index:9999;
-box-shadow:0 5px 20px rgba(0,0,0,0.3);
 }
 
 </style>
@@ -388,13 +377,9 @@ box-shadow:0 5px 20px rgba(0,0,0,0.3);
 
 <body onload="startWebsite()">
 
-<!-- ADMIN -->
-
 <div class="admin-tag">
 👑 Admin By Vijay Kumar Mandal
 </div>
-
-<!-- HEADER -->
 
 <header>
 
@@ -425,8 +410,6 @@ Electrical Engineering Student
 
 </header>
 
-<!-- NAV -->
-
 <nav>
 
 <button onclick="showTab('home')">Home</button>
@@ -456,9 +439,7 @@ Electrical Engineering Student
 <h2>Welcome</h2>
 
 <p>
-
 Welcome to VK Connect Website.
-
 </p>
 
 </div>
@@ -658,9 +639,6 @@ placeholder="Type your message..."></textarea>
 class="wa-btn"
 onclick="sendWhatsApp()">
 
-<img src="
-https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg">
-
 Chat on WhatsApp
 
 </button>
@@ -678,16 +656,14 @@ Chat on WhatsApp
 <h2>About Me</h2>
 
 <p contenteditable="true">
-
 This website is created by Vijay Kumar Mandal.
-
 </p>
 
 </div>
 
 </div>
 
-<!-- ADMIN BUTTON -->
+<!-- ADMIN -->
 
 <button class="admin-btn"
 onclick="adminLogin()">
@@ -703,6 +679,23 @@ Admin Edit
 function startWebsite(){
 
 disableEditing();
+
+/* LOAD PROFILE */
+
+const savedProfile=
+localStorage.getItem('profileImage');
+
+if(savedProfile){
+
+document.getElementById(
+'profilePic'
+).src=savedProfile;
+
+}
+
+/* LOAD GALLERY */
+
+loadSavedGallery();
 
 /* VOICE */
 
@@ -735,15 +728,42 @@ document.getElementById(tabId)
 
 }
 
-/* PROFILE */
+/* PROFILE SAVE */
 
 function loadProfile(event){
+
+let password=
+prompt("Enter Admin Password");
+
+if(password==="6162"){
+
+const file=
+event.target.files[0];
+
+const reader=
+new FileReader();
+
+reader.onload=function(e){
 
 const image=
 document.getElementById('profilePic');
 
-image.src=
-URL.createObjectURL(event.target.files[0]);
+image.src=e.target.result;
+
+localStorage.setItem(
+'profileImage',
+e.target.result
+);
+
+};
+
+reader.readAsDataURL(file);
+
+}else{
+
+alert("Wrong Password");
+
+}
 
 }
 
@@ -751,12 +771,89 @@ URL.createObjectURL(event.target.files[0]);
 
 function loadGallery(event){
 
+let password=
+prompt("Enter Admin Password");
+
+if(password!=="6162"){
+
+alert("Wrong Password");
+
+return;
+
+}
+
 const files=event.target.files;
 
-const gallery=
-document.getElementById('galleryBox');
-
 for(let i=0;i<files.length;i++){
+
+const reader=
+new FileReader();
+
+reader.onload=function(e){
+
+saveGalleryImage(
+e.target.result
+);
+
+createGalleryItem(
+e.target.result
+);
+
+};
+
+reader.readAsDataURL(files[i]);
+
+}
+
+}
+
+/* SAVE GALLERY */
+
+function saveGalleryImage(src){
+
+let galleryImages=
+JSON.parse(
+localStorage.getItem(
+'galleryImages'
+)
+) || [];
+
+galleryImages.push(src);
+
+localStorage.setItem(
+'galleryImages',
+JSON.stringify(galleryImages)
+);
+
+}
+
+/* LOAD SAVED GALLERY */
+
+function loadSavedGallery(){
+
+let galleryImages=
+JSON.parse(
+localStorage.getItem(
+'galleryImages'
+)
+) || [];
+
+galleryImages.forEach(src=>{
+
+createGalleryItem(src);
+
+});
+
+}
+
+/* CREATE GALLERY ITEM */
+
+function createGalleryItem(src){
+
+const gallery=
+document.getElementById(
+'galleryBox'
+);
 
 const item=
 document.createElement('div');
@@ -766,12 +863,11 @@ item.className='gallery-item';
 const img=
 document.createElement('img');
 
-img.src=
-URL.createObjectURL(files[i]);
+img.src=src;
 
 img.onclick=function(){
 
-openViewer(img.src);
+openViewer(src);
 
 };
 
@@ -784,7 +880,22 @@ del.className='delete-btn';
 
 del.onclick=function(){
 
+let password=
+prompt(
+'Enter Admin Password'
+);
+
+if(password==="6162"){
+
 item.remove();
+
+removeGalleryImage(src);
+
+}else{
+
+alert('Wrong Password');
+
+}
 
 };
 
@@ -795,9 +906,30 @@ gallery.appendChild(item);
 
 }
 
+/* REMOVE IMAGE */
+
+function removeGalleryImage(src){
+
+let galleryImages=
+JSON.parse(
+localStorage.getItem(
+'galleryImages'
+)
+) || [];
+
+galleryImages=
+galleryImages.filter(
+img=>img!==src
+);
+
+localStorage.setItem(
+'galleryImages',
+JSON.stringify(galleryImages)
+);
+
 }
 
-/* IMAGE VIEWER */
+/* IMAGE VIEW */
 
 function openViewer(src){
 
@@ -881,12 +1013,13 @@ window.open(url,'_blank');
 
 }
 
-/* DISABLE EDIT */
+/* DISABLE USER EDIT */
 
 function disableEditing(){
 
-document.querySelectorAll('[contenteditable]')
-.forEach(item=>{
+document.querySelectorAll(
+'[contenteditable]'
+).forEach(item=>{
 
 item.setAttribute(
 'contenteditable',
@@ -916,7 +1049,7 @@ if(password==="6162"){
 
 enableEditing();
 
-alert('Admin Edit Mode Enabled');
+alert('Admin Mode Enabled');
 
 }else{
 
@@ -926,12 +1059,13 @@ alert('Wrong Password');
 
 }
 
-/* ENABLE EDIT */
+/* ENABLE ADMIN */
 
 function enableEditing(){
 
-document.querySelectorAll('[contenteditable]')
-.forEach(item=>{
+document.querySelectorAll(
+'[contenteditable]'
+).forEach(item=>{
 
 item.setAttribute(
 'contenteditable',
