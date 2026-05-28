@@ -4,121 +4,171 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Vijay Kumar Mandal</title>
+<title>Vijay Kumar Mandal App</title>
 
 <style>
 
 *{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
 }
 
 body{
-    background:#062c78;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    min-height:100vh;
-    padding:20px;
+background:#0a2d73;
+color:#fff;
+min-height:100vh;
 }
 
-.card{
-    width:390px;
-    background:#fff;
-    border-radius:30px;
-    overflow:hidden;
-    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+header{
+background:linear-gradient(135deg,#005eff,#001d5c);
+padding:30px 20px;
+text-align:center;
+position:relative;
 }
 
-.header{
-    background:linear-gradient(135deg,#005eff,#002a7a);
-    height:220px;
-    position:relative;
+.profile-container{
+position:relative;
+display:inline-block;
 }
 
-.profile{
-    position:absolute;
-    left:50%;
-    bottom:-70px;
-    transform:translateX(-50%);
-    text-align:center;
-}
-
-.profile img{
-    width:150px;
-    height:150px;
-    border-radius:50%;
-    border:7px solid #fff;
-    object-fit:cover;
-    background:#fff;
-    box-shadow:0 5px 20px rgba(0,0,0,0.3);
+.profile-container img{
+width:140px;
+height:140px;
+border-radius:50%;
+border:6px solid white;
+object-fit:cover;
+background:#fff;
+cursor:pointer;
 }
 
 .upload-btn{
-    margin-top:10px;
-    background:#005eff;
-    color:#fff;
-    padding:8px 15px;
-    border-radius:20px;
-    cursor:pointer;
-    display:inline-block;
-    font-size:14px;
+display:block;
+margin-top:10px;
+background:#fff;
+color:#005eff;
+padding:8px 15px;
+border-radius:20px;
+cursor:pointer;
+font-weight:bold;
 }
 
 input[type=file]{
-    display:none;
+display:none;
 }
 
-.content{
-    padding:100px 25px 30px;
-    text-align:center;
+header h1{
+margin-top:20px;
+font-size:35px;
 }
 
-h1{
-    color:#0a2d73;
-    font-size:36px;
-    margin-bottom:10px;
+header p{
+margin-top:10px;
+font-size:18px;
+opacity:0.9;
 }
 
-.subtitle{
-    color:#666;
-    font-size:19px;
-    line-height:1.6;
-    margin-bottom:30px;
+nav{
+display:flex;
+overflow-x:auto;
+background:#00184d;
+padding:10px;
+gap:10px;
 }
 
-.info-box{
-    text-align:left;
-    border-left:4px solid #005eff;
-    padding-left:15px;
-    margin-bottom:25px;
+nav button{
+background:#005eff;
+border:none;
+color:#fff;
+padding:10px 18px;
+border-radius:20px;
+cursor:pointer;
+white-space:nowrap;
 }
 
-.info-box h3{
-    color:#005eff;
-    margin-bottom:5px;
+nav button:hover{
+background:#fff;
+color:#005eff;
 }
 
-.info-box p{
-    color:#444;
-    font-size:18px;
+.tab{
+display:none;
+padding:25px;
 }
 
-.edit-btn{
-    margin-top:20px;
-    background:#0a2d73;
-    color:#fff;
-    border:none;
-    padding:12px 20px;
-    border-radius:25px;
-    cursor:pointer;
-    font-size:16px;
+.active{
+display:block;
 }
 
-.edit-btn:hover{
-    background:#005eff;
+.card{
+background:#fff;
+color:#000;
+padding:20px;
+border-radius:20px;
+margin-bottom:20px;
+}
+
+.card h2{
+margin-bottom:15px;
+color:#005eff;
+}
+
+.editable{
+padding:8px;
+border:1px solid #ddd;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(100px,1fr));
+gap:15px;
+}
+
+.gallery img{
+width:100%;
+height:100px;
+object-fit:cover;
+border-radius:15px;
+cursor:pointer;
+}
+
+.calculator{
+max-width:300px;
+margin:auto;
+}
+
+.calculator input{
+width:100%;
+height:60px;
+font-size:28px;
+text-align:right;
+padding:10px;
+border:none;
+border-radius:10px;
+margin-bottom:10px;
+}
+
+.buttons{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:10px;
+}
+
+.buttons button{
+height:60px;
+font-size:22px;
+border:none;
+border-radius:10px;
+background:#005eff;
+color:white;
+cursor:pointer;
+}
+
+.buttons button:hover{
+background:#001d5c;
 }
 
 </style>
@@ -126,79 +176,259 @@ h1{
 
 <body>
 
+<header>
+
+<div class="profile-container">
+
+<img id="profilePic"
+src="https://via.placeholder.com/150">
+
+<label class="upload-btn">
+Upload Photo
+<input type="file" accept="image/*"
+onchange="loadProfile(event)">
+</label>
+
+</div>
+
+<h1 contenteditable="true">
+Vijay Kumar Mandal
+</h1>
+
+<p contenteditable="true">
+Electrical Engineering Student
+</p>
+
+</header>
+
+<nav>
+
+<button onclick="showTab('home')">Home</button>
+
+<button onclick="showTab('biodata')">
+Biodata
+</button>
+
+<button onclick="showTab('gallery')">
+Gallery
+</button>
+
+<button onclick="showTab('calculator')">
+Calculator
+</button>
+
+<button onclick="showTab('about')">
+About
+</button>
+
+</nav>
+
+<!-- HOME -->
+
+<div id="home" class="tab active">
+
 <div class="card">
 
-    <div class="header">
+<h2>Welcome</h2>
 
-        <div class="profile">
+<p contenteditable="true">
+This is my personal app website.
+You can edit all details.
+</p>
 
-            <img id="profilePic"
-            src="https://via.placeholder.com/150"
-            alt="Profile">
+</div>
 
-            <label class="upload-btn">
-                Upload Photo
-                <input type="file" accept="image/*" onchange="loadImage(event)">
-            </label>
+</div>
 
-        </div>
+<!-- BIODATA -->
 
-    </div>
+<div id="biodata" class="tab">
 
-    <div class="content">
+<div class="card">
 
-        <h1 contenteditable="true">
-            Vijay Kumar Mandal
-        </h1>
+<h2>Full Biodata</h2>
 
-        <div class="subtitle" contenteditable="true">
-            Government Engineering College Student<br>
-            Electrical Engineering (2023–2027)
-        </div>
+<div class="editable" contenteditable="true">
+Name: Vijay Kumar Mandal
+</div>
 
-        <div class="info-box">
-            <h3>Profession</h3>
-            <p contenteditable="true">
-                Engineering Student
-            </p>
-        </div>
+<div class="editable" contenteditable="true">
+Profession: Engineering Student
+</div>
 
-        <div class="info-box">
-            <h3>College</h3>
-            <p contenteditable="true">
-                Government Engineering College
-            </p>
-        </div>
+<div class="editable" contenteditable="true">
+College: Government Engineering College
+</div>
 
-        <div class="info-box">
-            <h3>Branch</h3>
-            <p contenteditable="true">
-                Electrical Engineering
-            </p>
-        </div>
+<div class="editable" contenteditable="true">
+Branch: Electrical Engineering
+</div>
 
-        <div class="info-box">
-            <h3>Session</h3>
-            <p contenteditable="true">
-                2023 – 2027
-            </p>
-        </div>
+<div class="editable" contenteditable="true">
+Session: 2023-2027
+</div>
 
-        <button class="edit-btn">
-            Edit Enabled
-        </button>
+<div class="editable" contenteditable="true">
+Location: Bihar, India
+</div>
 
-    </div>
+<div class="editable" contenteditable="true">
+Skills: HTML, CSS, JavaScript
+</div>
+
+</div>
+
+</div>
+
+<!-- GALLERY -->
+
+<div id="gallery" class="tab">
+
+<div class="card">
+
+<h2>Photo Gallery</h2>
+
+<label class="upload-btn">
+Upload Images
+<input type="file" multiple accept="image/*"
+onchange="loadGallery(event)">
+</label>
+
+<br><br>
+
+<div class="gallery" id="galleryBox"></div>
+
+</div>
+
+</div>
+
+<!-- CALCULATOR -->
+
+<div id="calculator" class="tab">
+
+<div class="card">
+
+<h2>Calculator</h2>
+
+<div class="calculator">
+
+<input type="text" id="display">
+
+<div class="buttons">
+
+<button onclick="add('7')">7</button>
+<button onclick="add('8')">8</button>
+<button onclick="add('9')">9</button>
+<button onclick="add('/')">÷</button>
+
+<button onclick="add('4')">4</button>
+<button onclick="add('5')">5</button>
+<button onclick="add('6')">6</button>
+<button onclick="add('*')">×</button>
+
+<button onclick="add('1')">1</button>
+<button onclick="add('2')">2</button>
+<button onclick="add('3')">3</button>
+<button onclick="add('-')">−</button>
+
+<button onclick="add('0')">0</button>
+<button onclick="add('.')">.</button>
+<button onclick="calculate()">=</button>
+<button onclick="add('+')">+</button>
+
+<button onclick="clearDisplay()">
+C
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ABOUT -->
+
+<div id="about" class="tab">
+
+<div class="card">
+
+<h2>About Me</h2>
+
+<p contenteditable="true">
+
+I am Vijay Kumar Mandal,
+Electrical Engineering Student.
+
+I can edit this section anytime.
+
+</p>
+
+</div>
 
 </div>
 
 <script>
 
-function loadImage(event){
+function showTab(tabId){
 
-    const image = document.getElementById('profilePic');
+document.querySelectorAll('.tab')
+.forEach(tab=>{
+tab.classList.remove('active');
+});
 
-    image.src = URL.createObjectURL(event.target.files[0]);
+document.getElementById(tabId)
+.classList.add('active');
+
+}
+
+function loadProfile(event){
+
+const image=document.getElementById('profilePic');
+
+image.src=
+URL.createObjectURL(event.target.files[0]);
+
+}
+
+function loadGallery(event){
+
+const files=event.target.files;
+
+const gallery=
+document.getElementById('galleryBox');
+
+for(let i=0;i<files.length;i++){
+
+const img=document.createElement('img');
+
+img.src=URL.createObjectURL(files[i]);
+
+gallery.appendChild(img);
+
+}
+
+}
+
+function add(value){
+
+document.getElementById('display').value+=value;
+
+}
+
+function calculate(){
+
+const display=
+document.getElementById('display');
+
+display.value=eval(display.value);
+
+}
+
+function clearDisplay(){
+
+document.getElementById('display').value='';
 
 }
 
