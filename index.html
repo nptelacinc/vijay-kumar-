@@ -1,198 +1,307 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vijay Kumar Mandal - Biodata</title>  <style>
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, sans-serif;
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vijay Kumar Mandal | Biodata</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f1f5f9;
+    color:#222;
+}
+
+/* MAIN SECTION */
+
+header{
+    width:100%;
+    min-height:100vh;
+    background:linear-gradient(135deg,#0f172a,#2563eb);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding:30px;
+}
+
+.profile-card{
+    width:100%;
+    max-width:460px;
+    background:white;
+    border-radius:25px;
+    overflow:hidden;
+    text-align:center;
+    box-shadow:0 12px 35px rgba(0,0,0,0.25);
+    animation:up 1s ease;
+}
+
+/* ANIMATION */
+
+@keyframes up{
+
+    from{
+        transform:translateY(40px);
+        opacity:0;
     }
 
-    body{
-      background:#f4f7fb;
-      color:#222;
-      line-height:1.6;
+    to{
+        transform:translateY(0);
+        opacity:1;
     }
 
-    header{
-      background:linear-gradient(135deg,#0f172a,#2563eb);
-      color:white;
-      text-align:center;
-      padding:50px 20px;
+}
+
+/* TOP COVER */
+
+.cover{
+    height:170px;
+    background:linear-gradient(135deg,#2563eb,#0f172a);
+}
+
+/* PROFILE IMAGE */
+
+.profile-img{
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    object-fit:cover;
+    border:6px solid white;
+    margin-top:-90px;
+    box-shadow:0 8px 25px rgba(0,0,0,0.25);
+}
+
+/* CONTENT */
+
+.profile-content{
+    padding:25px;
+}
+
+.profile-content h1{
+    font-size:34px;
+    color:#111827;
+    margin-top:10px;
+}
+
+.profile-content p{
+    color:#555;
+    font-size:16px;
+    margin-top:8px;
+    line-height:1.6;
+}
+
+/* INFO SECTION */
+
+.info{
+    margin-top:28px;
+    text-align:left;
+}
+
+.info-box{
+    background:#f8fafc;
+    padding:15px;
+    border-radius:12px;
+    margin-bottom:14px;
+    font-size:15px;
+    border-left:4px solid #2563eb;
+    transition:0.3s;
+}
+
+.info-box:hover{
+    transform:translateX(4px);
+}
+
+.info-box strong{
+    color:#2563eb;
+}
+
+/* SKILLS */
+
+.skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    margin-top:20px;
+    justify-content:center;
+}
+
+.skill{
+    background:#2563eb;
+    color:white;
+    padding:10px 16px;
+    border-radius:30px;
+    font-size:14px;
+}
+
+/* BUTTONS */
+
+.buttons{
+    margin-top:30px;
+}
+
+.buttons a{
+    display:inline-block;
+    text-decoration:none;
+    background:#111827;
+    color:white;
+    padding:12px 22px;
+    border-radius:12px;
+    margin:6px;
+    transition:0.3s;
+    font-size:15px;
+}
+
+.buttons a:hover{
+    background:#2563eb;
+    transform:translateY(-3px);
+}
+
+/* FOOTER */
+
+footer{
+    padding:22px;
+    text-align:center;
+    color:#666;
+    font-size:14px;
+}
+
+/* MOBILE */
+
+@media(max-width:500px){
+
+    .profile-card{
+        max-width:100%;
     }
 
-    header img{
-      width:140px;
-      height:140px;
-      border-radius:50%;
-      border:4px solid white;
-      object-fit:cover;
-      margin-bottom:15px;
-      background:white;
+    .profile-content h1{
+        font-size:28px;
     }
 
-    header h1{
-      font-size:38px;
-      margin-bottom:10px;
+    .profile-img{
+        width:160px;
+        height:160px;
     }
 
-    header p{
-      font-size:18px;
-      opacity:0.9;
-    }
+}
 
-    .container{
-      width:90%;
-      max-width:1000px;
-      margin:30px auto;
-    }
+</style>
 
-    .card{
-      background:white;
-      padding:25px;
-      border-radius:18px;
-      margin-bottom:25px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.08);
-    }
+</head>
 
-    .card h2{
-      color:#2563eb;
-      margin-bottom:15px;
-      border-bottom:2px solid #e5e7eb;
-      padding-bottom:8px;
-    }
+<body>
 
-    .info-grid{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:15px;
-    }
+<header>
 
-    .info-box{
-      background:#f8fafc;
-      padding:12px;
-      border-radius:10px;
-    }
+<div class="profile-card">
 
-    .skills{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-    }
+    <!-- TOP DESIGN -->
+    <div class="cover"></div>
 
-    .skill{
-      background:#2563eb;
-      color:white;
-      padding:10px 15px;
-      border-radius:30px;
-      font-size:14px;
-    }
+    <!-- PROFILE PHOTO -->
+    <img 
+    src="54cc4fbc-e95a-4010-ac62-d4bb0611ed52.jpeg"
+    alt="Vijay Kumar Mandal"
+    class="profile-img">
 
-    .social a{
-      text-decoration:none;
-      color:white;
-      background:#111827;
-      padding:12px 18px;
-      border-radius:10px;
-      display:inline-block;
-      margin-right:10px;
-      margin-top:10px;
-      transition:0.3s;
-    }
+    <div class="profile-content">
 
-    .social a:hover{
-      background:#2563eb;
-      transform:translateY(-3px);
-    }
+        <!-- NAME -->
+        <h1>Vijay Kumar Mandal</h1>
 
-    footer{
-      text-align:center;
-      padding:25px;
-      color:#666;
-      font-size:14px;
-    }
+        <!-- SHORT INTRO -->
+        <p>
+            Government Engineering College Student <br>
+            Electrical Engineering (2023–2027)
+        </p>
 
-    @media(max-width:700px){
-      .info-grid{
-        grid-template-columns:1fr;
-      }
+        <!-- PERSONAL INFO -->
+        <div class="info">
 
-      header h1{
-        font-size:30px;
-      }
-    }
-  </style></head>
-<body>  <header>
-    <img src="https://via.placeholder.com/140" alt="Profile Photo">
-    <h1>Vijay Kumar Mandal</h1>
-    <p>Student | Learning Technology & Development</p>
-  </header>  <div class="container"><div class="card">
-  <h2>About Me</h2>
-  <p>
-    Hello! My name is Vijay Kumar Mandal. I am a student and currently learning technology, web development, and digital tools. I enjoy creating projects, exploring new ideas, and improving my technical skills every day.
-  </p>
+            <div class="info-box">
+                <strong>Profession:</strong><br>
+                Engineering Student
+            </div>
+
+            <div class="info-box">
+                <strong>College:</strong><br>
+                Government Engineering College
+            </div>
+
+            <div class="info-box">
+                <strong>Branch:</strong><br>
+                Electrical Engineering
+            </div>
+
+            <div class="info-box">
+                <strong>Session:</strong><br>
+                2023 – 2027
+            </div>
+
+            <div class="info-box">
+                <strong>Location:</strong><br>
+                Bihar, India
+            </div>
+
+            <div class="info-box">
+                <strong>Email:</strong><br>
+                vijaykumarmandal6162ee@gmail.com
+            </div>
+
+            <div class="info-box">
+                <strong>Phone:</strong><br>
+                9334243998
+            </div>
+
+        </div>
+
+        <!-- SKILLS -->
+        <div class="skills">
+
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">GitHub</div>
+            <div class="skill">MATLAB</div>
+            <div class="skill">Web Design</div>
+            <div class="skill">Electrical Engineering</div>
+
+        </div>
+
+        <!-- SOCIAL BUTTONS -->
+        <div class="buttons">
+
+            <a href="https://github.com/" target="_blank">
+                GitHub
+            </a>
+
+            <a href="https://www.linkedin.com/in/vijay-kumar-32014b309?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank">
+                LinkedIn
+            </a>
+
+            <a href="https://www.instagram.com/vijaykumar616207?igsh=ZGJuaGFtcmF1Z2x6" target="_blank">
+                Instagram
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2026 Vijay Kumar Mandal | Personal Biodata Website
+    </footer>
+
 </div>
 
-<div class="card">
-  <h2>Personal Information</h2>
+</header>
 
-  <div class="info-grid">
-    <div class="info-box"><strong>Name:</strong> Vijay Kumar Mandal</div>
-    <div class="info-box"><strong>Profession:</strong> Student</div>
-    <div class="info-box"><strong>Location:</strong> Bihar, India</div>
-    <div class="info-box"><strong>Email:</strong> your-email@example.com</div>
-    <div class="info-box"><strong>Phone:</strong> +91 XXXXX XXXXX</div>
-    <div class="info-box"><strong>Language:</strong> Hindi, English</div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>Education</h2>
-
-  <div class="info-box">
-    <strong>Bachelor's Degree</strong><br>
-    BEU University<br>
-    Ongoing
-  </div>
-</div>
-
-<div class="card">
-  <h2>Skills</h2>
-
-  <div class="skills">
-    <div class="skill">HTML</div>
-    <div class="skill">CSS</div>
-    <div class="skill">MATLAB</div>
-    <div class="skill">GitHub Pages</div>
-    <div class="skill">Basic Coding</div>
-    <div class="skill">Technology Learning</div>
-  </div>
-</div>
-
-<div class="card">
-  <h2>Certificates & Projects</h2>
-
-  <ul>
-    <li>NPTEL Certificate Projects</li>
-    <li>MATLAB Training</li>
-    <li>GitHub Website Hosting</li>
-    <li>QR Code Based PDF Projects</li>
-  </ul>
-</div>
-
-<div class="card">
-  <h2>Contact & Social Links</h2>
-
-  <div class="social">
-    <a href="#">GitHub</a>
-    <a href="#">LinkedIn</a>
-    <a href="#">Instagram</a>
-  </div>
-</div>
-
-  </div>  <footer>
-    © 2026 Vijay Kumar Mandal | Personal Biodata Website
-  </footer></body>
+</body>
 </html>
